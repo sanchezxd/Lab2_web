@@ -1,14 +1,13 @@
-version: 1.0.{build}
-image: Visual Studio 2019
-
 environment:
   PYTHON: "C:\\Python38-x64"
 
 install:
+  # Обновление менеджера пакетов pip и установка зависимостей из requirements.txt
   - "%PYTHON%\\python.exe -m pip install --upgrade pip"
   - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
 
-build: off
+build: off  # Для Python-проектов стадия компиляции/сборки отключается
 
 test_script:
-  - "%PYTHON%\\python.exe -c \"print('AppVeyor CI setup completed successfully.')\""
+  # Запуск разработанных модульных тестов в окружении Windows CI
+  - "%PYTHON%\\python.exe test_app.py"
